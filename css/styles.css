@@ -9,7 +9,7 @@
     --color-light: #ffffff;
 
     --t-transition: cubic-bezier(0.4, 0, 0.2, 1);
-    --t-duration: 1250ms;
+    --t-duration: 250ms;
 }
 
 body {
