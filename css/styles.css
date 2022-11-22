@@ -9,7 +9,7 @@
     --color-light: #ffffff;
 
     --t-transition: cubic-bezier(0.4, 0, 0.2, 1);
-    --t-duration: 250ms;
+    --t-duration: 1250ms;
 }
 
 body {
@@ -117,12 +117,9 @@ ul {
     color: var(--color-primary-dark);
     text-decoration: none;
     padding-top: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 32px;
 
-    transition-property: color;
-    transition-duration: var(--t-duration);
-    transition-timing-function: var(--t-transition);
-    transition-delay: 0;
+    transition: color var(--t-duration) var(--t-transition);
 }
 
 .header-nav-link:hover,
@@ -136,15 +133,19 @@ ul {
 }
 
 .current-link {
-    color: var(--color-accent);
+    position: relative;
 }
 
 .current-link::after {
-    content: " ";
+    content: "";
+    display: block;
     width: 100%;
     height: 4px;
     border-radius: 2px;
     background-color: var(--color-accent);
+
+    position: absolute;
+    bottom: 0;
 }
 
 .header-contacts-link {
@@ -155,15 +156,60 @@ ul {
     display: flex;
     align-items: center;
 
-    transition-property: color;
-    transition-duration: var(--t-duration);
-    transition-timing-function: var(--t-transition);
-    transition-delay: 0;
+    transition: color var(--t-duration) var(--t-transition);
 }
 
 .header-contacts-link:hover,
 .header-contacts-link:focus {
     color: var(--color-accent);
+}
+
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    transition: opacity var(--t-duration) var(--t-transition);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 581px;
+    width: 528px;
+    
+    background-color: #fff;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.button-close {
+    display: block;
+    margin: 0;
 }
 
 .hero-bloque {
@@ -205,10 +251,8 @@ ul {
     display: block;
     margin: 0 auto;
     
-    transition-property: background-color;
-    transition-duration: var(--t-duration);
-    transition-timing-function: var(--t-transition);
-    transition-delay: 0;
+    transition: background-color var(--t-duration) var(--t-transition);
+    
 }
 
 .hero-button:hover {
@@ -232,7 +276,6 @@ ul {
     height: 120px;
     background-color: #F5F4FA;
     border-radius: 4px;
-    /* padding: 25px 100px; */
 }
 
 .benefit-name {
@@ -440,6 +483,7 @@ ul {
 }
 
 .filter-button:hover,
+.filter-button:focus,
 .filter-button:active {
     background-color: var(--color-accent);
     color: var(--color-light);
@@ -453,10 +497,7 @@ ul {
 }
 
 .portfolio-card {
-    transition-property: filter;
-    transition-duration: var(--t-duration);
-    transition-timing-function: var(--t-transition);
-    transition-delay: 0;
+    transition: filter var(--t-duration) var(--t-transition);
 }
 
 .portfolio-card-popup {
@@ -481,12 +522,9 @@ ul {
     line-height: 1.556;
     letter-spacing: 0.03em;
 
-    transform: translateY(294px);
+    transform: translateY(101%);
 
-    /* transition-property: translate;
-    transition-duration: var(--t-duration);
-    transition-timing-function: var(--t-transition);
-    transition-delay: 0; */
+    transition: transform var(--t-duration) var(--t-transition);
 }
 
 .portfolio-list-link {
@@ -494,14 +532,15 @@ ul {
     text-decoration: none;
 }
 
-.portfolio-card:hover,
-.portfolio-card:focus  {
+.portfolio-list-link:hover,
+.portfolio-list-link:focus {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     cursor: pointer;
 }
 
-.portfolio-card-popup:hover {
-    transform: translateY(0px);
+.portfolio-list-link:hover .portfolio-card-label,
+.portfolio-list-link:focus .portfolio-card-label {
+    transform: translateY(0);
 }
 
 .portfolio-project-card {
@@ -544,10 +583,7 @@ ul {
     color: var(--color-light);
     text-decoration: none;
 
-    transition-property: color;
-    transition-duration: var(--t-duration);
-    transition-timing-function: var(--t-transition);
-    transition-delay: 0;
+    transition: color var(--t-duration) var(--t-transition);
 }
 
 .footer-opaque {
